@@ -1,4 +1,4 @@
-﻿#include <iostream>
+#include <iostream>
 #include <string>
 #include <filesystem>
 #include <vector>
@@ -49,9 +49,9 @@ void write_file(std::string const& filepath,
 
 int main()
 {
-    std::string file_name {"astra.dll"};
+    std::string file_name{ "astra.dll" };
     std::vector<unsigned char> buffer;
-   
+
     try {
         buffer = load_file(file_name);
     }
@@ -61,7 +61,7 @@ int main()
         return 200;
     }
 
-    std::vector<unsigned char> signature {
+    std::vector<unsigned char> signature{
         0xE8, 0x59, 0xDC, 0xF2, 0xFF, 0x85, 0xC0, 0x74, 0x2B
     };
 
@@ -79,7 +79,7 @@ int main()
         0xE8, 0x59, 0xDC, 0xF2, 0xFF, 0x85, 0xC0, 0xEB, 0x2B
     };
 
-    std::filesystem::copy_file(file_name, file_name+"_backup");
+    std::filesystem::copy_file(file_name, file_name + "_backup");
 
     try {
         write_file(file_name, patch, offset);
@@ -96,4 +96,3 @@ int main()
     system("pause");
     return 0;
 }
-
