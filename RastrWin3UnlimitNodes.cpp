@@ -6,8 +6,8 @@
 #include <errno.h>
 #include <algorithm>
 
-// search signature :   E8 59 DC F2 FF 85 C0 74 2B
-// replace with     :   E8 59 DC F2 FF 85 C0 EB 2B
+// search signature :   83 F8 3C 7E
+// replace with     :   83 F8 3C EB
 
 std::vector<unsigned char> load_file(std::string const& filepath)
 {
@@ -62,7 +62,7 @@ int main()
     }
 
     std::vector<unsigned char> signature{
-        0xE8, 0x59, 0xDC, 0xF2, 0xFF, 0x85, 0xC0, 0x74, 0x2B
+        0x83, 0xF8, 0x3C, 0x7E
     };
 
     auto offset_it = std::search(buffer.begin(), buffer.end(),
@@ -76,7 +76,7 @@ int main()
     }
 
     std::vector<unsigned char> patch{
-        0xE8, 0x59, 0xDC, 0xF2, 0xFF, 0x85, 0xC0, 0xEB, 0x2B
+        0x83, 0xF8, 0x3C, 0xEB
     };
 
     std::filesystem::copy_file(file_name, file_name + "_backup");
